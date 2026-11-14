@@ -36,7 +36,12 @@ html,body{width:100%;max-width:100%;overflow-x:clip}
 .counter-bottom{padding:8px 14px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);flex-shrink:0}
 @media(max-width:1080px){.battle-layout{grid-template-columns:minmax(0,1fr)}.battle-layout .counter-panel{position:static;max-height:640px}}
 @media(max-width:700px){.counter-controls{grid-template-columns:1fr}.counter-table{font-size:12px}.counter-table td,.counter-table th{padding:8px 6px}}
-.task .task-content>ul{margin:0;padding-left:19px}.task .task-content>ul>li{margin:5px 0;line-height:1.42;font-size:16px}.task .time{font-size:23px}.task .task-content>ul>li:first-child{font-weight:700}.task .action-note{font-weight:400;text-decoration:underline;text-decoration-color:var(--gold)}@media(max-width:700px){.task .time{font-size:19px}.task .task-content>ul>li{font-size:15px}}</style></head><body>
+.task .task-content>ul{margin:0;padding-left:19px}.task .task-content>ul>li{margin:5px 0;line-height:1.42;font-size:16px}.task .time{font-size:23px}.task .task-content>ul>li:first-child{font-weight:700}.task .action-note{font-weight:400;text-decoration:underline;text-decoration-color:var(--gold)}@media(max-width:700px){.task .time{font-size:19px}.task .task-content>ul>li{font-size:15px}}
+/* Compact timing labels in narrow build column. */
+.battle-layout .task{grid-template-columns:minmax(105px,115px) minmax(0,1fr)}
+.battle-layout .task .time{font-size:15px;line-height:1.25;font-weight:750;overflow-wrap:normal;word-break:normal;hyphens:none}
+@media(max-width:700px){.battle-layout .task{grid-template-columns:minmax(86px,98px) minmax(0,1fr)}.battle-layout .task .time{font-size:14px}}
+</style></head><body>
 <header><div class="eyebrow">Age of Empires II: Definitive Edition · Coach offline v1.0 · 14 novembre 2026</div><h1>Boemi · Foresta Nera · 3 umani vs 2 IA Difficili</h1><p>Mappa <b>Grande</b> · Popolazione massima <b>500 per giocatore</b> · Stile <b>Fast Castle → Boom difensivo → Houfnice</b></p></header>
 <div class="container">
 <section class="grid" aria-label="Obiettivi"><div class="stat"><small>Castelli</small><b>16–19'</b></div><div class="stat"><small>Abitanti a 20'</small><b>38–45</b></div><div class="stat"><small>Abitanti a 30'</small><b>70–85</b></div><div class="stat"><small>Militari a 30'</small><b>12–22</b></div></section>

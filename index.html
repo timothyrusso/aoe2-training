@@ -36,7 +36,7 @@ html,body{width:100%;max-width:100%;overflow-x:clip}
 .counter-bottom{padding:8px 14px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);flex-shrink:0}
 @media(max-width:1080px){.battle-layout{grid-template-columns:minmax(0,1fr)}.battle-layout .counter-panel{position:static;max-height:640px}}
 @media(max-width:700px){.counter-controls{grid-template-columns:1fr}.counter-table{font-size:12px}.counter-table td,.counter-table th{padding:8px 6px}}
-</style></head><body>
+.task .task-content>ul{margin:0;padding-left:19px}.task .task-content>ul>li{margin:5px 0;line-height:1.42;font-size:16px}.task .time{font-size:23px}.task .task-content>ul>li:first-child{font-weight:700}.task .action-note{font-weight:400;text-decoration:underline;text-decoration-color:var(--gold)}@media(max-width:700px){.task .time{font-size:19px}.task .task-content>ul>li{font-size:15px}}</style></head><body>
 <header><div class="eyebrow">Age of Empires II: Definitive Edition · Coach offline v1.0 · 14 novembre 2026</div><h1>Boemi · Foresta Nera · 3 umani vs 2 IA Difficili</h1><p>Mappa <b>Grande</b> · Popolazione massima <b>500 per giocatore</b> · Stile <b>Fast Castle → Boom difensivo → Houfnice</b></p></header>
 <div class="container">
 <section class="grid" aria-label="Obiettivi"><div class="stat"><small>Castelli</small><b>16–19'</b></div><div class="stat"><small>Abitanti a 20'</small><b>38–45</b></div><div class="stat"><small>Abitanti a 30'</small><b>70–85</b></div><div class="stat"><small>Militari a 30'</small><b>12–22</b></div></section>
@@ -140,16 +140,16 @@ const threats=[
 const checkpoints={20:[20,15,5],25:[30,21,9],30:[40,25,15],40:[58,35,22],late:[75,45,35]};
 const LS="aoe2-bohemians-bf-3v2-500-v1", saved=JSON.parse(localStorage.getItem(LS)||"{}"), values=saved.values||{}, names=["Cibo","Legno","Oro"], keys=["food","wood","gold"];
 function save(){localStorage.setItem(LS,JSON.stringify({values}))}
-const opening=[["3 iniziali + 1 in coda","Centro città → avvia abitanti","Esploratore: individua pecore, cinghiali e accessi"],["3 iniziali","2 Case → pecore","2 abitanti costruiscono le Case; poi tutti e 3 al cibo"],["3 nuovi · 4–6 totali","Cibo → pecore","Tutte sotto il Centro città"],["4 nuovi · 7–10 totali","Legno → foresta","Il primo costruisce 1 Campo di taglialegna"],["1 nuovo · 11 totali","Cibo → primo cinghiale","Attira il cinghiale al Centro città"],["4 nuovi · 12–15 totali","Cibo → bacche","Il primo costruisce 1 Mulino; prepara Case"],["3 nuovi · 16–18 totali","Cibo → secondo cinghiale","Non perdere l'abitante che lo attira"],["4 nuovi · 19–22 totali","Legno → seconda foresta","Secondo Campo di taglialegna, se necessario"],["4 nuovi · 23–26 totali","Oro (2–3) + cibo (restanti)","Campo minerario; Telaio → Feudale"],["26 totali","Controlla assegnazioni","13–15 cibo · 8–10 legno · 2–3 oro"]];
+const opening=[["4 abitanti in coda al Centro città","Esploratore → cerca pecore, cinghiali e accessi"],["2 Case (costruite da 2 abitanti iniziali)","3 abitanti iniziali → pecore sotto il Centro città"],["3 abitanti → pecore"],["4 abitanti → legno","1 Campo di taglialegna (costruito dal primo)"],["1 abitante → cibo","Attira 1° cinghiale sotto il Centro città"],["4 abitanti → bacche","1 Mulino (costruito dal primo)","Case aggiuntive prima di esaurire la popolazione"],["3 abitanti → cibo / secondo cinghiale","Attira 2° cinghiale al Centro città","Nota: non perdere l'abitante che lo attira"],["4 abitanti → legno","1 Campo di taglialegna aggiuntivo, se necessario"],["4 abitanti → 2–3 oro e restanti cibo","1 Campo minerario","Tecnologia: Telaio (Centro città)","Avanzamento: Età Feudale (500 cibo)"],["Controllo: 13–15 abitanti al cibo","8–10 abitanti al legno","2–3 abitanti all'oro","Nota: se manca cibo, sposta temporaneamente abitanti sul cibo"]];
+
 function esc(t){return String(t).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function taskBullets(text){return text.split(/;\s+|\.\s+(?=[A-ZÀ-Ù0-9])/).map(s=>s.trim().replace(/\.$/,"")).filter(Boolean)}
 function taskCategory(t){return ({eco:"Economia / abitanti",build:"Edifici",tech:"Tecnologia / avanzamento",army:"Esercito",alert:"Priorità / attenzione"})[t[2]]||"Azione"}
 function renderPhases(){
 document.getElementById("phases").innerHTML=phases.map((p,i)=>'<section class="phase"><div class="phasehead"><div><div class="eyebrow">'+esc(p.time)+'</div><h3>'+esc(p.title)+'</h3></div></div><div class="phasebody"><p class="muted">'+esc(p.goal)+'</p>'+p.tasks.map((t,j)=>{
-const special=i===0?opening[j]:null;
-let lines=special?[special[1],special[2]]:taskBullets(t[1]);
-const items=lines.map(v=>'<li'+((t[2]==="alert"||v.includes("se ")||v.includes("Se "))?' class="action-note"':"")+'>'+esc(v)+'</li>').join("");
-return '<div class="task"><div class="time">'+esc(t[0])+'</div><div class="task-content"><div class="task-category">'+taskCategory(t)+'</div>'+(special?'<div class="task-villagers">'+esc(special[0])+'</div>':"")+'<ul>'+items+'</ul></div></div>'
+const lines=i===0?opening[j]:taskBullets(t[1]);
+const items=lines.map(v=>'<li'+((v.startsWith("Nota:")||t[2]==="alert")?' class="action-note"':"")+'>'+esc(v)+'</li>').join("");
+return '<div class="task"><div class="time">'+esc(t[0])+'</div><div class="task-content"><ul>'+items+'</ul></div></div>'
 }).join("")+'</div></section>').join("");
 }
 function resources(){let cp=document.getElementById("checkpoint").value, target=checkpoints[cp];document.getElementById("resources").innerHTML=names.map((name,i)=>'<tr><td>'+name+'</td><td>'+target[i]+'</td><td><input type="number" min="0" max="500" data-resource="'+keys[i]+'" value="'+(values[cp+"-"+keys[i]]??"")+'" aria-label="'+name+'"></td></tr>').join("");document.querySelectorAll("[data-resource]").forEach(el=>el.addEventListener("input",e=>{values[cp+"-"+e.target.dataset.resource]=e.target.value;save();resourceSummary()}));resourceSummary()}

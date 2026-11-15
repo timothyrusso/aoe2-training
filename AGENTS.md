@@ -15,6 +15,7 @@ The guide is designed to be consulted **while playing**, not read like a wiki.
 ## Files and deployment
 
 - `index.html` is the main application, with self-contained HTML, CSS, and JavaScript.
+- `fonts/` holds the two local web fonts (Noto Sans, Cinzel) with their OFL licences; `icons/` holds the game icons used in build steps, phase headers, and the counter table. The page must still read correctly if either folder fails to load.
 - `README.md` contains the repository overview.
 - GitHub Pages publishes `index.html` from the repository's `main` branch.
 - Keep the page usable without a backend, build step, or external runtime dependencies.
@@ -23,7 +24,7 @@ The guide is designed to be consulted **while playing**, not read like a wiki.
 
 1. **Immediate readability:** short action-oriented bullet points, prominent timings, compact labels, consistent spacing, and legible text.
 2. **Low interaction cost:** do not add checklists, timers, exports, or other controls that distract during gameplay unless explicitly requested.
-3. **Clear layout:** keep the build/execution order on the left and the searchable unit-counter reference on the right on wide screens; stack them responsively on small screens.
+3. **Clear layout:** keep the build/execution order as the main full-width column and the searchable unit-counter reference as the last section at the bottom of the page (moved there at the user's request).
 4. **Concrete guidance:** state exact villager allocations, units, quantities, buildings, technologies, and prerequisites where justified. Avoid duplicating information already shown in timing labels.
 5. **Accuracy:** distinguish tested game mechanics from estimated build timings or tactical advice. Do not imply a strategy guarantees victory.
 

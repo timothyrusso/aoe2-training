@@ -92,9 +92,9 @@ img.res{width:16px;height:16px;vertical-align:-3px;margin-right:3px}
 .counter-answer{display:flex;gap:10px;align-items:flex-start}
 @media(max-width:700px){.execution .task{grid-template-columns:minmax(86px,98px) minmax(0,1fr)}.task-lead{flex-direction:column;gap:6px}.icon-tile{width:38px;height:38px}.icon-tile.sm{width:30px;height:30px}.age-icon{width:40px;height:40px}}
 </style></head><body>
-<header><div class="eyebrow">Age of Empires II: Definitive Edition · Coach offline v1.0 · 14 novembre 2026</div><h1>Boemi · Foresta Nera · 3 umani vs 2 IA Difficili</h1><p>Mappa <b>Grande</b> · Popolazione massima <b>500 per giocatore</b> · Stile <b>Fast Castle → Boom difensivo → Houfnice</b></p></header>
+<header><div class="eyebrow">Age of Empires II: Definitive Edition · Coach offline v1.0 · 14 novembre 2026</div><h1>Boemi · Foresta Nera · 3 umani vs 2 IA Difficili</h1><p>Mappa <b>Grande</b> · Popolazione massima <b>500 per giocatore</b> · Stile <b>Feudale difensiva → Castelli → Boom → Houfnice</b></p></header>
 <div class="container">
-<section class="grid" aria-label="Obiettivi"><div class="stat"><small>Castelli</small><b>16–19'</b></div><div class="stat"><small>Abitanti a 20'</small><b>38–45</b></div><div class="stat"><small>Abitanti a 30'</small><b>70–85</b></div><div class="stat"><small>Militari a 30'</small><b>12–22</b></div></section>
+<section class="grid" aria-label="Obiettivi"><div class="stat"><small>Castelli</small><b>17–19'</b></div><div class="stat"><small>Abitanti a 20'</small><b>34–40</b></div><div class="stat"><small>Abitanti a 30'</small><b>70–85</b></div><div class="stat"><small>Militari a 30'</small><b>12–22</b></div></section>
 <section class="panel" id="hotkeys"><div class="toolbar" style="justify-content:space-between"><div><div class="eyebrow">Scorciatoie essenziali</div><h2>Hotkey da memorizzare</h2></div><button class="btn no-print" id="toggleKeys" aria-expanded="true">Nascondi scorciatoie</button></div><div id="hotkeysBody"><div class="hotkeys">
 <div class="hotkey"><b>1 · TC e produzione abitanti</b><div class="keys"><kbd>H</kbd> → <kbd>Q</kbd></div><p>Seleziona un Centro città e crea 1 abitante. Ripeti spesso: è la combinazione più importante.</p></div>
 <div class="hotkey"><b>2 · Abitante inattivo</b><div class="keys"><kbd>.</kbd></div><p>Trova l'abitante inattivo e assegnalo immediatamente a una risorsa.</p></div>
@@ -134,24 +134,26 @@ const phases=[
 ["23–26","2–3 nuovi abitanti sull'oro (Campo minerario), gli altri su cibo/fattorie; ricerca Telaio, poi clic Feudale a 500 cibo.", "tech","mining-camp"],
 ["Controllo","Prima di cliccare: circa 13–15 su cibo, 8–10 legno, 2–3 oro. Se mancano 500 cibo, ridistribuisci temporaneamente sul cibo.", "eco","villager"]
 ]},
-{age:"feudal",time:"12:30–16:30",title:"Feudale · ingresso rapido ai Castelli",goal:"28–30 abitanti; clic Castelli circa 13:30–15:00 (arrivo circa 16–18')",tasks:[
-["Durante avanzamento","Sposta i raccoglitori della caccia finita su fattorie (60 legno ciascuna). Continua a evitare TC inattivo.", "eco","farm"],
-["Subito in Feudale","Con 2 abitanti costruisci Mercato e con 1 costruisci Fucina (scontata per i Boemi). Sono i 2 edifici richiesti per i Castelli.", "build","market"],
-["Subito dopo","Ricerca Ascia a doppio taglio al Campo di taglialegna, se non ritarda il clic Castelli.", "tech","double-bit-axe"],
-["Seconda priorità","Collare per cavalli al Mulino solo se sostenibile; se blocca il passaggio, rimandalo.", "tech","horse-collar"],
-["Fino al clic","Crea circa 2 abitanti extra e raccogli 800 cibo + 200 oro; clic Età dei Castelli.", "eco","age-castle"],
-["Sicurezza","Esploratore e 1 alleato controllano il varco. Chiudi con palizzate/Case solo quanto serve; se serve una Caserma anticipata, i tempi slittano.", "alert","palisade"]
+{age:"feudal",time:"12:30–17:30",title:"Feudale · difesa del varco e ingresso ai Castelli",goal:"28–30 abitanti; 6–10 unità al varco; clic Castelli circa 14:30–16:00 (arrivo circa 17–19')",tasks:[
+["Durante avanzamento","Con 1 abitante dal legno costruisci la Caserma (175 legno) dietro il varco. Sposta i raccoglitori della caccia finita su fattorie (60 legno ciascuna).", "build","barracks"],
+["Subito in Feudale","Costruisci Poligono di tiro (175 legno) e Fucina (50 legno per i Boemi). Sono i 2 edifici richiesti per i Castelli; il Mercato si rimanda.", "build","archery-range"],
+["Cavalleria vista","Caserma: 4–6 Lancieri (35 cibo + 25 legno). I Boemi hanno +25% di danno bonus sui Lancieri.", "army","pikeman"],
+["Arcieri visti","Poligono: 4–6 Schermagliatori (25 cibo + 35 legno). Ricerca Impennaggio in Fucina.", "army","skirmisher"],
+["Fanteria vista","Poligono: 4–6 Arcieri (25 legno + 45 oro) dietro le palizzate. Sposta 1–2 abitanti in più sull'oro.", "army","crossbowman"],
+["Tecnologie","Ricerca Ascia a doppio taglio al Campo di taglialegna. Collare per cavalli al Mulino solo se non ritarda il clic Castelli.", "tech","double-bit-axe"],
+["Fino al clic","Crea 2–4 abitanti extra e raccogli 800 cibo + 200 oro; clic Età dei Castelli. Non fermare il TC per fare unità.", "eco","age-castle"],
+["Sicurezza","Tieni le unità dietro le palizzate e ripara con 1–2 abitanti. Se il varco cede, suona la campana e chiama gli alleati.", "alert","palisade"]
 ]},
-{age:"castle",time:"16:30–20:30",title:"Castelli · esplosione economica",goal:"3 Centri città; circa 38–45 abitanti a 20'",tasks:[
+{age:"castle",time:"17:30–21:00",title:"Castelli · esplosione economica",goal:"3 Centri città; circa 34–40 abitanti a 20'",tasks:[
 ["All'arrivo","Se hai 550 legno e 200 pietra, costruisci 2 TC aggiuntivi: 3–4 costruttori ciascuno, vicino a bosco e risorse. In caso contrario prima il secondo e poi il terzo.", "build","town-center"],
 ["Subito","Imposta produzione continua di abitanti da tutti i TC: richiede fino a 360 cibo/min. Imposta i punti di raccolta.", "eco","villager"],
 ["Dopo i TC","Ricerca Sega ad arco (Bow Saw) al Campo di taglialegna.", "tech","bow-saw"],
 ["Durante il boom","Costruisci progressivamente 18–22 fattorie. Riassegna i nuovi abitanti soprattutto al cibo e al legno.", "eco","farm"],
-["Economia","Punta circa a 20 cibo / 15 legno / 5 oro (più costruttori temporanei).", "eco","villager"],
-["Difesa","Se il varco è vicino o arriva cavalleria, costruisci Caserma adesso; il boom non deve morire per un attacco.", "alert","barracks"]
+["Economia","Punta circa a 18 cibo / 14 legno / 5 oro (più costruttori temporanei).", "eco","villager"],
+["Difesa","Tieni Lancieri e Schermagliatori al varco. Ricerca Picchiere se arriva cavalleria; il boom non deve morire per un attacco.", "alert","pikeman"]
 ]},
-{age:"castle",time:"20:30–25:30",title:"Boom difensivo · primo esercito",goal:"50–65 abitanti; 6–12 unità, a seconda della pressione",tasks:[
-["Ordine edifici","Costruisci 1 Caserma; 1 Poligono solo se vedi arcieri; 1 Officina d'assedio solo se utile contro un push. Non tutte a prescindere.", "build","barracks"],
+{age:"castle",time:"21:00–25:30",title:"Boom difensivo · primo esercito",goal:"50–65 abitanti; 6–12 unità, a seconda della pressione",tasks:[
+["Ordine edifici","Hai già Caserma e Poligono dalla Feudale. Costruisci il Mercato quando avanza legno; 1 Officina d'assedio solo se utile contro un push.", "build","market"],
 ["Cavalleria vista","Caserma: Lancieri → ricerca Picchiere in Castelli. Produci 6–10 Picchieri; precedenza rispetto agli Schermagliatori.", "army","pikeman"],
 ["Arcieri visti","Poligono: Schermagliatori; ricerca Schermagliatore élite se puoi sostenerlo. Obiettivo iniziale 6–8.", "army","skirmisher"],
 ["Assedio nemico visto","Officina: 1 Mangano contro arcieri/scorpioni raggruppati; non mandarlo da solo contro Mangani nemici.", "army","mangonel"],
@@ -194,10 +196,10 @@ const threats=[
 ["Elefanti da battaglia","Caserma → Picchieri / Alabardieri; Monastero → Monaci. Contro Elefanti balista, assedio e dispersione delle unità."],
 ["Mura rotte / attacco prima del boom","Fermati a 2 TC o anche 1 TC, crea unità counter, ripara/ricostruisci il muro dietro il primo varco e chiama gli alleati."]
 ];
-const checkpoints={20:[20,15,5,0],25:[30,21,9,0],30:[38,25,12,5],40:[56,34,20,5],late:[72,44,33,6]};
+const checkpoints={20:[18,14,5,0],25:[30,21,9,0],30:[38,25,12,5],40:[56,34,20,5],late:[72,44,33,6]};
 const LS="aoe2-bohemians-bf-3v2-500-v1", saved=JSON.parse(localStorage.getItem(LS)||"{}"), values=saved.values||{}, names=["Cibo","Legno","Oro","Pietra"], keys=["food","wood","gold","stone"];
 function save(){localStorage.setItem(LS,JSON.stringify({values}))}
-const opening=[["4 abitanti in coda al Centro città","Esploratore → cerca pecore, cinghiali e accessi"],["2 Case (costruite da 2 abitanti iniziali)","3 abitanti iniziali → pecore sotto il Centro città"],["3 abitanti → pecore"],["4 abitanti → legno","1 Campo di taglialegna (costruito dal primo)"],["1 abitante → cibo","Attira 1° cinghiale sotto il Centro città"],["4 abitanti → bacche","1 Mulino (costruito dal primo)","Case aggiuntive prima di esaurire la popolazione"],["3 abitanti → cibo / secondo cinghiale","Attira 2° cinghiale al Centro città","Nota: non perdere l'abitante che lo attira"],["4 abitanti → legno","1 Campo di taglialegna aggiuntivo, se necessario"],["4 abitanti → 2–3 oro e restanti cibo","1 Campo minerario","Tecnologia: Telaio (Centro città)","Avanzamento: Età Feudale (500 cibo)"],["Controllo: 13–15 abitanti al cibo","8–10 abitanti al legno","2–3 abitanti all'oro","Nota: se manca cibo, sposta temporaneamente abitanti sul cibo"]];
+const opening=[["4 abitanti in coda al Centro città","Esploratore → cerca pecore, cinghiali e accessi"],["2 Case (costruite da 2 abitanti iniziali)","3 abitanti iniziali → pecore sotto il Centro città"],["3 abitanti → pecore"],["4 abitanti → legno","1 Campo di taglialegna (costruito dal primo)"],["1 abitante → cibo","Attira 1° cinghiale sotto il Centro città"],["4 abitanti → bacche","1 Mulino (costruito dal primo)","Case aggiuntive prima di esaurire la popolazione"],["3 abitanti → cibo / secondo cinghiale","Attira 2° cinghiale al Centro città","Nota: non perdere l'abitante che lo attira"],["4 abitanti → legno","1 Campo di taglialegna aggiuntivo, se necessario","Palizzate sul varco verso il nemico (1 abitante dal legno)"],["4 abitanti → 2–3 oro e restanti cibo","1 Campo minerario","Tecnologia: Telaio (Centro città)","Avanzamento: Età Feudale (500 cibo)"],["Controllo: 13–15 abitanti al cibo","8–10 abitanti al legno","2–3 abitanti all'oro","Nota: se manca cibo, sposta temporaneamente abitanti sul cibo"]];
 
 const PNG_ICONS=new Set(["sheep","pikeman","halberdier","bombard-cannon","houfnice","hussite-wagon","trade-cart"]);
 function iconSrc(k){return "icons/"+k+(PNG_ICONS.has(k)?".png":".webp")}
